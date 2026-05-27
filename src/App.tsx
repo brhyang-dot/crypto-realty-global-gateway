@@ -64,8 +64,8 @@ export default function App() {
   const connectWeb3Wallet = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) {
-      setWeb3Error("MetaMask is not installed.");
-      alert("MetaMask (또는 Web3 지갑)이 설치되어 있지 않습니다. 브라우저 확장앱 설치 후 다시 시도해 주세요.");
+      setWeb3Error(""MetaMask extension not found in your browser.");
+      alert("MetaMask (or a compatible Web3 wallet extension) was not detected.\n\nPlease install MetaMask from https://metamask.io or enable it in your browser extensions to handle secure cryptographic contract signing, and click Connect again.");
       return;
     }
     try {
