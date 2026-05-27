@@ -1,0 +1,6 @@
+{
+  "name": "82shops | AI Global Investment Gateway",
+  "description": "Coin-based premium real estate broker hub and luxury world resort locator connecting global high-net-worth buyers and agents via intelligent interactive maps and multi-sig smart contracts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

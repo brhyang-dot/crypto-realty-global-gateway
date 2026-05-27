@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom luxury gold, deep navy, and emerald green values */
+  --color-gold-50: #f4fbf0;
+  --color-gold-100: #e2f7d8;
+  --color-gold-200: #c4f0b2;
+  --color-gold-300: #9ae480;
+  --color-gold-400: #6cd14f;
+  --color-gold-500: #4cb62f;
+  --color-gold-600: #389521;
+  --color-gold-700: #2c721c;
+  --color-gold-850: #153f0b;
+
+  --color-luxury-deep: #0b1528; /* Deep Navy */
+  --color-luxury-card: #122144; /* Bright Deep Navy Card */
+  --color-luxury-accent: #10b981; /* Emerald Green */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #faf9f6;
+  background-image: radial-gradient(circle at 50% 10%, #f5f2eb 0%, #faf9f6 90%), radial-gradient(circle at 10% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+  background-attachment: fixed;
+  color: #1c1917;
+}
+
+/* Custom scrollbars for a sleek tech feel in light mode */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f3f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #dcdad1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.08); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite ease-in-out;
+}
