@@ -195,14 +195,14 @@ export default function OfferModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/50 p-4 backdrop-blur-md">
-      <div className="relative w-full max-w-lg bg-white border border-stone-200 rounded-2xl shadow-2xl overflow-hidden font-sans">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/60 p-4 backdrop-blur-md font-sans">
+      <div className="relative w-full max-w-lg bg-white border border-stone-200 rounded-2xl shadow-2xl overflow-hidden">
         
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-stone-200 bg-stone-50">
-          <div className="flex items-center gap-2">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
-            <h3 className="font-heading font-extrabold text-stone-900 text-sm">
+        <div className="flex items-center justify-between p-4.5 border-b border-stone-200 bg-[#fdfcf9]">
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-3 w-3 rounded-full bg-sky-505 bg-sky-500 animate-pulse" />
+            <h3 className="font-heading font-black text-[#111827] text-sm md:text-base uppercase tracking-tight">
               Sovereign Escrow Settlement & Offer
             </h3>
           </div>
@@ -211,41 +211,41 @@ export default function OfferModal({
             onClick={onClose}
             className="text-stone-400 hover:text-stone-900 transition p-1 hover:bg-stone-100 rounded-lg cursor-pointer"
           >
-            <X size={18} />
+            <X size={20} />
           </button>
         </div>
 
         {/* Deploying view */}
         {isDeploying || deployFeedback ? (
           <div className="p-6 space-y-5">
-            <div className="text-center space-y-2">
+            <div className="text-center space-y-2.5">
               {deployFeedback ? (
                 <div className="flex flex-col items-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 mb-2">
-                    <CheckCircle size={24} className="animate-pulse" />
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-sky-50 border border-sky-300 text-sky-700 mb-3 shadow-inner">
+                    <CheckCircle size={28} className="animate-pulse" />
                   </div>
-                  <h4 className="font-heading font-black text-sm text-emerald-805 text-emerald-800">Offer Handshake Registered</h4>
-                  <p className="text-xs text-stone-605 mt-1 max-w-sm font-semibold text-center">
+                  <h4 className="font-heading font-black text-base text-sky-700">Offer Handshake Registered</h4>
+                  <p className="text-xs md:text-sm text-stone-600 mt-1 max-w-sm font-semibold text-center">
                     {deployFeedback}
                   </p>
                 </div>
               ) : (
                 <div className="flex flex-col items-center">
-                  <Loader2 className="h-10 w-10 text-emerald-600 animate-spin mb-2" />
-                  <h4 className="font-heading font-black text-sm text-stone-900">Setting Up Escrow Channels...</h4>
-                  <p className="text-[11px] text-stone-500 font-mono">Routing ledger intent onto gateway-82shops secure tunnel</p>
+                  <Loader2 className="h-12 w-12 text-sky-500 animate-spin mb-3" />
+                  <h4 className="font-heading font-black text-sm md:text-base text-stone-900">Setting Up Escrow Channels...</h4>
+                  <p className="text-xs text-stone-500 font-mono">Routing ledger intent onto gateway-82shops secure tunnel</p>
                 </div>
               )}
             </div>
 
             {/* Simulated Live Console Logs */}
-            <div className="bg-stone-950 text-[#00ff66] rounded-xl p-4 border border-stone-800 h-44 overflow-y-auto space-y-1.5 font-mono text-[11px] leading-relaxed select-text shadow-inner">
-              <div className="text-stone-500 text-[10px] pb-1 border-b border-stone-800/60 font-bold">ESCROW ROUTING PROTOCOL & API TRACE</div>
+            <div className="bg-[#0b1424] text-[#fdfcf9] rounded-xl p-4 border border-stone-700 h-44 overflow-y-auto space-y-1.5 font-mono text-xs leading-relaxed select-text shadow-inner">
+              <div className="text-stone-400 text-[10px] pb-1 border-b border-stone-800/60 font-black tracking-widest">ESCROW ROUTING PROTOCOL & API TRACE</div>
               {deployLogs.map((log, index) => (
-                <div key={index} className="fade-in">{log}</div>
+                <div key={index} className="fade-in text-sky-350 text-sky-300/90">{log}</div>
               ))}
               {!deployFeedback && !isDeploying && (
-                <div className="text-emerald-400 animate-pulse">■ Listening for API response from international split merchants...</div>
+                <div className="text-amber-400 animate-pulse font-bold">■ Listening for API response from international split merchants...</div>
               )}
             </div>
 
@@ -256,7 +256,7 @@ export default function OfferModal({
                   onClose();
                   setDeployFeedback("");
                 }}
-                className="w-full bg-stone-900 hover:bg-stone-950 text-white font-heading font-black text-xs py-3 rounded-xl transition cursor-pointer"
+                className="w-full bg-sky-500 hover:bg-sky-600 text-white font-heading font-black text-xs md:text-sm py-3.5 rounded-xl transition cursor-pointer"
               >
                 Return to Dealroom Board
               </button>
@@ -264,24 +264,24 @@ export default function OfferModal({
           </div>
         ) : (
           /* Normal Input Form View */
-          <div className="p-5 space-y-4">
+          <div className="p-6 space-y-5">
             {/* Short property context banner */}
-            <div className="flex items-center gap-3 bg-stone-50 border border-stone-200 rounded-xl p-3">
-              <img src={listing.image} alt="" className="h-11 w-11 rounded-lg object-cover" />
-              <div className="truncate text-xs">
-                <span className="text-stone-500 block text-[10px] font-mono uppercase font-bold">{listing.resort}</span>
-                <span className="text-stone-900 font-extrabold font-sans text-sm">{listing.title}</span>
+            <div className="flex items-center gap-3.5 bg-stone-50 border border-stone-200 rounded-xl p-3.5 shadow-sm">
+              <img src={listing.image} alt="" className="h-12 w-12 rounded-lg object-cover border border-stone-200" />
+              <div className="truncate text-xs md:text-sm">
+                <span className="text-stone-500 block text-[10px] font-mono uppercase font-black tracking-widest leading-none mb-1">{listing.resort}</span>
+                <span className="text-[#111827] font-black font-sans">{listing.title}</span>
               </div>
             </div>
 
             {/* Tab selection for Web3 vs Card Payment */}
-            <div className="grid grid-cols-2 gap-2 border-b border-stone-200 pb-2">
+            <div className="grid grid-cols-2 gap-2.5 border-b border-stone-200 pb-2.5">
               <button
                 type="button"
                 onClick={() => setActivePaymentMode("crypto")}
-                className={`py-2 text-center text-xs font-black transition rounded-lg border cursor-pointer ${
+                className={`py-3 text-center text-xs md:text-sm font-black transition rounded-xl border cursor-pointer uppercase tracking-wider ${
                   activePaymentMode === "crypto"
-                    ? "bg-emerald-50 border-emerald-500 text-emerald-800"
+                    ? "bg-sky-100 border-sky-300 text-sky-700"
                     : "bg-white border-stone-200 text-stone-500 hover:text-stone-800"
                 }`}
               >
@@ -290,9 +290,9 @@ export default function OfferModal({
               <button
                 type="button"
                 onClick={() => setActivePaymentMode("stripe")}
-                className={`py-2 text-center text-xs font-black transition rounded-lg border cursor-pointer ${
+                className={`py-3 text-center text-xs md:text-sm font-black transition rounded-xl border cursor-pointer uppercase tracking-wider ${
                   activePaymentMode === "stripe"
-                    ? "bg-sky-50 border-sky-500 text-sky-800"
+                    ? "bg-sky-100 border-sky-300 text-sky-700"
                     : "bg-white border-stone-200 text-stone-500 hover:text-stone-800"
                 }`}
               >
@@ -303,7 +303,7 @@ export default function OfferModal({
             {activePaymentMode === "crypto" ? (
               <>
                 {/* Coin selector */}
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   <label className="text-xs font-bold text-stone-700 uppercase tracking-wider block">Preferred Collateral Layer</label>
                   <div className="grid grid-cols-3 gap-2">
                     {listing.coins.map((coin) => {
@@ -315,14 +315,14 @@ export default function OfferModal({
                           key={coin}
                           type="button"
                           onClick={() => setSelectedCoin(coin)}
-                          className={`flex items-center justify-between p-2.5 rounded-xl border transition cursor-pointer ${
+                          className={`flex items-center justify-between p-3 rounded-xl border transition cursor-pointer ${
                             isSelected 
-                              ? "bg-emerald-50 border-emerald-500 text-emerald-800 text-xs font-bold" 
-                              : "bg-white border-stone-250 text-stone-600 hover:border-stone-400 text-xs font-medium"
+                              ? "bg-sky-105 bg-sky-100 border-sky-300 text-sky-700 text-xs font-black" 
+                              : "bg-white border-stone-250 text-stone-605 hover:border-stone-400 text-xs font-bold"
                           }`}
                         >
                           <span>{coin}</span>
-                          <span className="font-mono text-xs opacity-70 ml-1">
+                          <span className="font-mono text-xs opacity-80 font-black">
                             {iconSymbols[coin as keyof typeof iconSymbols] || "⊞"}
                           </span>
                         </button>
@@ -333,52 +333,52 @@ export default function OfferModal({
 
                 {/* Simulated Balance section */}
                 {useRealWeb3 ? (
-                  <div className="flex flex-col gap-2 bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs shadow-inner">
-                    <div className="flex items-center justify-between text-emerald-800 font-extrabold text-[12px]">
-                      <span className="flex items-center gap-1.5">
+                  <div className="flex flex-col gap-2 bg-sky-50 border border-sky-200 rounded-xl p-3.5 text-xs md:text-sm shadow-inner">
+                    <div className="flex items-center justify-between text-sky-750 font-black text-xs md:text-sm">
+                      <span className="flex items-center gap-1.5 font-bold text-sky-800">
                         <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
                         <span>Real MetaMask Connected:</span>
                       </span>
-                      <span className="font-mono text-[10px] bg-white border border-emerald-300 font-extrabold px-1.5 py-0.5 rounded text-emerald-950 shadow-sm">
+                      <span className="font-mono text-xs bg-white border border-sky-300 font-black px-2 py-0.5 rounded text-stone-900 shadow-sm">
                         {web3Account?.slice(0, 6)}...{web3Account?.slice(-4)}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between mt-1 text-xs">
+                    <div className="flex items-center justify-between mt-1 text-xs md:text-sm">
                       <span className="font-bold text-stone-600">Actual Wallet Balance:</span>
-                      <span className="font-mono font-black text-stone-900 text-[13px]">
-                        {web3Balance || "0.0000"} <span className="text-[10px] text-emerald-700 font-bold">ETH</span>
+                      <span className="font-mono font-black text-stone-900 text-sm md:text-base">
+                        {web3Balance || "0.0000"} <span className="text-xs text-sky-500 font-black">ETH</span>
                       </span>
                     </div>
-                    <div className="text-[10px] text-emerald-700 leading-tight border-t border-emerald-200/40 pt-1.5 font-semibold">
+                    <div className="text-[10px] md:text-xs text-sky-700 leading-tight border-t border-stone-200/50 pt-2 font-bold select-none">
                       ※ Escrow signing will request a cryptographically secure personal handshake signature on your MetaMask.
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col gap-1.5 bg-stone-50 border border-stone-200 rounded-xl p-3 text-xs">
+                  <div className="flex flex-col gap-2 bg-stone-50 border border-stone-200 rounded-xl p-3.5 text-xs md:text-sm">
                     <div className="flex items-center justify-between">
                       <span className="text-stone-600 font-bold flex items-center gap-1">
                         <span>My Simulated Balance:</span>
                       </span>
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-extrabold text-stone-900">
-                          {currentBalance.toLocaleString()} <span className="text-[10px] text-emerald-700 font-black">{selectedCoin}</span>
+                        <span className="font-mono font-black text-stone-900 text-sm md:text-base">
+                          {currentBalance.toLocaleString()} <span className="text-xs text-sky-500 font-black">{selectedCoin}</span>
                         </span>
                         <button
                           type="button"
                           onClick={handleQuickAddFunds}
-                          className="text-[10px] font-sans text-emerald-800 hover:text-white border border-emerald-300 px-2 py-1 rounded bg-emerald-50 hover:bg-emerald-500 transition cursor-pointer font-bold animate-pulse"
+                          className="text-[10px] font-sans text-sky-700 hover:text-white border border-sky-300 px-2.5 py-1 rounded bg-sky-50 hover:bg-sky-500 transition cursor-pointer font-black animate-pulse shadow-sm"
                         >
                           Quick Refill
                         </button>
                       </div>
                     </div>
                     {connectWeb3Wallet && (window as any).ethereum && (
-                      <div className="pt-2 border-t border-stone-200/60 flex justify-between items-center text-[10px]">
-                        <span className="text-stone-500 font-semibold">Want real Web3 transaction testing?</span>
+                      <div className="pt-2 border-t border-stone-200/60 flex justify-between items-center text-[10px] md:text-xs">
+                        <span className="text-stone-550 font-semibold">Want real Web3 transaction testing?</span>
                         <button
                           type="button"
                           onClick={connectWeb3Wallet}
-                          className="text-[9px] text-amber-800 hover:text-white border border-amber-300 px-1.5 py-0.5 rounded bg-amber-50 hover:bg-amber-500 transition cursor-pointer font-extrabold"
+                          className="text-[9px] text-amber-900 hover:text-white border border-amber-300 px-2 py-0.5 rounded bg-amber-50 hover:bg-amber-600 transition cursor-pointer font-black"
                         >
                           Connect MetaMask
                         </button>
@@ -389,9 +389,9 @@ export default function OfferModal({
 
                 {/* Slider or input value for coin amount */}
                 <div className="space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-stone-700 font-extrabold font-sans">Submit Offer Amount</span>
-                    <span className="text-stone-500 font-semibold">Recommended: {baseRecommendedCoinAmount.toLocaleString()} {selectedCoin}</span>
+                  <div className="flex items-center justify-between text-xs md:text-sm">
+                    <span className="text-stone-750 font-black font-sans">Submit Offer Amount</span>
+                    <span className="text-stone-500 font-bold">Recommended: {baseRecommendedCoinAmount.toLocaleString()} {selectedCoin}</span>
                   </div>
                   
                   <div className="relative">
@@ -400,96 +400,96 @@ export default function OfferModal({
                       step="any"
                       value={offerAmount}
                       onChange={(e) => setOfferAmount(parseFloat(e.target.value) || 0)}
-                      className="w-full bg-white border border-stone-250 focus:border-emerald-500 rounded-xl px-3.5 py-3 text-sm font-mono font-bold text-stone-900 focus:outline-none"
+                      className="w-full bg-white border border-stone-250 focus:border-sky-500 rounded-xl px-4 py-3 text-sm md:text-base font-mono font-black text-stone-900 focus:outline-none"
                     />
-                    <span className="absolute right-3.5 top-1/2 -translate-y-1/2 font-mono text-xs font-bold text-stone-500">{selectedCoin}</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 font-mono text-xs md:text-sm font-black text-stone-500">{selectedCoin}</span>
                   </div>
 
                   {/* Equiv details */}
-                  <div className="flex justify-between items-center text-[11px] bg-stone-50 p-2.5 border border-stone-200 rounded-lg font-mono text-stone-600">
-                    <span>Real-Time Market USD Value:</span>
-                    <span className="text-emerald-800 text-xs font-bold animate-pulse">${usdEquivalentValue.toLocaleString()} USD</span>
+                  <div className="flex justify-between items-center text-xs bg-[#fcfbf9] p-3 border border-stone-200 rounded-xl font-mono text-stone-600">
+                    <span className="font-semibold">Real-Time Market USD Value:</span>
+                    <span className="text-sky-700 text-xs md:text-sm font-black animate-pulse">${usdEquivalentValue.toLocaleString()} USD</span>
                   </div>
                 </div>
 
                 {/* Custom Remarks Message */}
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                   <label className="text-xs font-bold text-stone-700 uppercase tracking-wider block">Decentralized Escrow Notes</label>
                   <textarea 
                     rows={2}
                     value={remarks}
                     onChange={(e) => setRemarks(e.target.value)}
                     placeholder="Write custom term requests or broker settlement queries..."
-                    className="w-full bg-white border border-stone-250 focus:border-emerald-500 rounded-xl p-3 text-xs text-stone-900 focus:outline-none placeholder-stone-400 resize-none leading-relaxed font-semibold"
+                    className="w-full bg-white border border-stone-250 focus:border-sky-500 rounded-xl p-3.5 text-xs md:text-sm text-stone-900 focus:outline-none placeholder-stone-400 resize-none leading-relaxed font-bold"
                   />
                 </div>
               </>
             ) : (
               /* Stripe Connect Credit Card Layout */
-              <div className="space-y-3.5">
-                <div className="bg-sky-50 border border-sky-200 rounded-xl p-3 text-xs text-sky-800 font-medium space-y-1">
-                  <div className="font-extrabold text-sky-900 flex items-center gap-1.5">
-                    <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
+              <div className="space-y-4">
+                <div className="bg-sky-50 border border-sky-200 rounded-xl p-3.5 text-xs md:text-sm text-sky-850 font-medium space-y-1 shadow-inner">
+                  <div className="font-black text-sky-900 flex items-center gap-1.5">
+                    <span className="h-2.5 w-2.5 rounded-full bg-sky-500 animate-pulse" />
                     <span>Stripe Connect split-deposit enabled:</span>
                   </div>
-                  <p className="leading-relaxed text-[11px]">
+                  <p className="leading-relaxed text-xs">
                     This transaction securely locks **${listing.priceUsd.toLocaleString()} USD** in legal escrow. Upon verified title settlement, Stripe automatically routes commission shares to your **82shops.com** operator wallet account.
                   </p>
                 </div>
 
                 {/* Card input layout */}
-                <div className="space-y-2.5 border-t border-stone-100 pt-1.5">
+                <div className="space-y-3 border-t border-stone-105 pt-3">
                   <div className="space-y-1">
-                    <label className="text-[10px] font-black font-mono text-stone-500 uppercase tracking-widest">Cardholder Name</label>
+                    <label className="text-[10px] md:text-xs font-black font-mono text-stone-500 uppercase tracking-widest">Cardholder Name</label>
                     <input 
                       type="text"
                       placeholder="Gildong Hong"
                       value={stripeName}
                       onChange={(e) => setStripeName(e.target.value)}
-                      className="w-full bg-white border border-stone-250 p-2.5 rounded-lg text-xs font-sans font-semibold focus:outline-none focus:border-sky-500 transition"
+                      className="w-full bg-white border border-stone-250 p-3 rounded-xl text-xs md:text-sm font-sans font-semibold focus:outline-none focus:border-sky-500 transition"
                     />
                   </div>
 
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-3.5">
                     <div className="col-span-2 space-y-1">
-                      <label className="text-[10px] font-black font-mono text-stone-500 uppercase tracking-widest">Card Number</label>
+                      <label className="text-[10px] md:text-xs font-black font-mono text-stone-500 uppercase tracking-widest">Card Number</label>
                       <input 
                         type="text"
                         placeholder="4242 4242 4242 4242"
                         value={stripeCardNum}
                         onChange={(e) => setStripeCardNum(e.target.value)}
                         maxLength={16}
-                        className="w-full bg-white border border-stone-250 p-2.5 rounded-lg text-xs font-mono font-bold focus:outline-none focus:border-sky-500 transition"
+                        className="w-full bg-white border border-stone-250 p-3 rounded-xl text-xs md:text-sm font-mono font-bold focus:outline-none focus:border-sky-500 transition"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-black font-mono text-stone-500 uppercase tracking-widest">Expiry Date</label>
+                      <label className="text-[10px] md:text-xs font-black font-mono text-stone-500 uppercase tracking-widest">Expiry Date</label>
                       <input 
                         type="text"
                         placeholder="MM/YY"
                         value={stripeExpiry}
                         onChange={(e) => setStripeExpiry(e.target.value)}
                         maxLength={5}
-                        className="w-full bg-white border border-stone-250 p-2.5 rounded-lg text-xs font-mono font-bold focus:outline-none focus:border-sky-500 transition text-center"
+                        className="w-full bg-white border border-stone-250 p-3 rounded-xl text-xs md:text-sm font-mono font-bold focus:outline-none focus:border-sky-500 transition text-center"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-2 gap-3.5">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-black font-mono text-stone-500 uppercase tracking-widest">CVC Code (CVV)</label>
+                      <label className="text-[10px] md:text-xs font-black font-mono text-stone-500 uppercase tracking-widest">CVC Code (CVV)</label>
                       <input 
                         type="password"
                         placeholder="•••"
                         value={stripeCvc}
                         onChange={(e) => setStripeCvc(e.target.value)}
                         maxLength={4}
-                        className="w-full bg-white border border-stone-250 p-2.5 rounded-lg text-xs font-mono font-bold focus:outline-none focus:border-sky-500 transition text-center"
+                        className="w-full bg-white border border-stone-250 p-3 rounded-xl text-xs md:text-sm font-mono font-bold focus:outline-none focus:border-sky-500 transition text-center"
                       />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-black font-mono text-stone-500 uppercase tracking-widest">Total USD Escrow</label>
-                      <div className="w-full bg-stone-100 p-2.5 rounded-lg text-xs font-mono font-black text-stone-700 text-center border border-stone-200">
+                      <label className="text-[10px] md:text-xs font-black font-mono text-stone-500 uppercase tracking-widest">Total USD Escrow</label>
+                      <div className="w-full bg-stone-100 p-3 rounded-xl text-xs md:text-sm font-mono font-black text-[#111827] text-center border border-stone-200">
                         ${listing.priceUsd.toLocaleString()} USD
                       </div>
                     </div>
@@ -497,7 +497,7 @@ export default function OfferModal({
                 </div>
 
                 {!isBalanceSufficient && (
-                  <div className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200 rounded-lg p-2 font-semibold">
+                  <div className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-xl p-3 font-semibold">
                     ※ Card checkout simulated. Please fill in the Cardholder Name, 12+ digit Card Number, Expiry, and CVC to enable submission.
                   </div>
                 )}
@@ -506,8 +506,8 @@ export default function OfferModal({
 
             {/* Warn when insufficient */}
             {activePaymentMode === "crypto" && !isBalanceSufficient && (
-              <div className="flex gap-2 bg-red-50 border border-red-200 p-3 rounded-xl text-xs text-red-800 font-bold shadow-sm">
-                <ShieldAlert className="text-red-500 shrink-0 mt-0.5" size={14} />
+              <div className="flex gap-2.5 bg-red-50 border border-red-200 p-3.5 rounded-xl text-xs md:text-sm text-red-800 font-bold shadow-sm">
+                <ShieldAlert className="text-red-500 shrink-0 mt-0.5" size={16} />
                 <p>
                   Insufficient Wallet Balance. Please refill your simulated testing wallet above before submitting.
                 </p>
@@ -519,7 +519,7 @@ export default function OfferModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-600 border border-stone-250 font-heading font-bold text-xs py-2.5 rounded-xl transition cursor-pointer"
+                className="flex-1 bg-stone-100 hover:bg-stone-200 text-stone-600 border border-stone-250 font-heading font-black text-xs md:text-sm py-3 rounded-xl transition cursor-pointer"
               >
                 Cancel / Close
               </button>
@@ -527,15 +527,13 @@ export default function OfferModal({
                 type="button"
                 disabled={!isBalanceSufficient || (activePaymentMode === "crypto" && offerAmount <= 0)}
                 onClick={handleTriggerOfferSubmit}
-                className={`flex-1 flex items-center justify-center gap-1.5 font-heading text-xs py-2.5 rounded-xl transition cursor-pointer ${
+                className={`flex-1 flex items-center justify-center gap-1.5 font-heading text-xs md:text-sm py-3 rounded-xl transition cursor-pointer ${
                   isBalanceSufficient && (activePaymentMode === "stripe" || offerAmount > 0)
-                    ? activePaymentMode === "stripe"
-                      ? "bg-sky-500 hover:bg-sky-600 font-black text-white active:scale-95 shadow-md shadow-sky-500/10"
-                      : "bg-emerald-500 hover:bg-emerald-600 font-black text-white active:scale-95 shadow-md shadow-emerald-500/10"
+                    ? "bg-sky-500 hover:bg-sky-600 font-black text-white active:scale-95 shadow-md shadow-sky-500/10"
                     : "bg-stone-200 text-stone-400 cursor-not-allowed border border-stone-300"
                 }`}
               >
-                <Cpu size={14} />
+                <Cpu size={15} />
                 <span>{activePaymentMode === "stripe" ? "Authorize Stripe Escrow" : "Publish Smart Contract"}</span>
               </button>
             </div>

@@ -53,36 +53,36 @@ export default function Matchmaker({ listings, onSelectMatch, onClose }: Matchma
   };
 
   return (
-    <div className="bg-[#fafcf6] border border-stone-200 rounded-2xl p-5 shadow-lg space-y-4 fade-in min-h-[480px] flex flex-col justify-between">
+    <div className="bg-[#fdfcf9] border border-stone-200 rounded-2xl p-5 md:p-6 shadow-lg space-y-5 fade-in min-h-[500px] flex flex-col justify-between font-sans">
       <div>
         {/* Header decoration */}
-        <div className="flex items-center justify-between border-b border-stone-200 pb-3">
-          <div className="flex items-center gap-2">
-            <Compass className="text-emerald-600 animate-spin-slow" size={16} />
-            <h3 className="font-heading font-extrabold text-sm text-stone-900 tracking-tight uppercase">
+        <div className="flex items-center justify-between border-b border-stone-200 pb-3.5">
+          <div className="flex items-center gap-2.5">
+            <Compass className="text-sky-500 animate-spin-slow" size={17} />
+            <h3 className="font-heading font-black text-sm md:text-base text-stone-900 tracking-tight uppercase">
               Elite Estate Matchmaker
             </h3>
           </div>
-          <span className="text-[9px] font-mono text-emerald-805 text-emerald-800 bg-emerald-50 border border-emerald-300 px-2.5 py-0.5 rounded font-black uppercase">
+          <span className="text-[10px] md:text-xs font-mono text-sky-750 bg-sky-50 border border-sky-200 px-3 py-1 rounded-lg font-black uppercase">
             STEP {step} OF 3
           </span>
         </div>
 
         {step === 1 && (
-          <div className="space-y-4 mt-3 fade-in">
-            <div className="space-y-1">
-              <span className="text-[10px] font-mono font-black text-emerald-700 uppercase tracking-widest block">
+          <div className="space-y-4 md:space-y-5 mt-4 fade-in">
+            <div className="space-y-1.5">
+              <span className="text-xs font-mono font-black text-sky-600 uppercase tracking-wider block">
                 Question 01
               </span>
-              <h4 className="text-xs font-bold text-stone-900 text-sm">
+              <h4 className="text-sm md:text-base font-black text-[#111827]">
                 Which digital asset layer is your primary liquidation standard?
               </h4>
-              <p className="text-[10px] text-stone-500 font-medium">
+              <p className="text-xs text-stone-500 font-bold">
                 Sovereign contracts will execute automatically in this chosen denomination.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3">
               {[
                 { id: "82SHOPS", name: "82SHOPS Token", desc: "5% Fee Exemption", rate: "◎ Native" },
                 { id: "BTC", name: "Bitcoin (BTC)", desc: "Generational Value", rate: "₿ Layer-1" },
@@ -92,40 +92,40 @@ export default function Matchmaker({ listings, onSelectMatch, onClose }: Matchma
                 <button
                   key={item.id}
                   onClick={() => setPreferredCoin(item.id)}
-                  className={`p-3 rounded-xl border text-left transition select-none ${
+                  className={`p-3.5 rounded-xl border text-left transition select-none cursor-pointer ${
                     preferredCoin === item.id
-                      ? "bg-emerald-50 border-emerald-500 text-emerald-800 font-extrabold"
+                      ? "bg-sky-100 border-sky-300 text-sky-750 font-black"
                       : "bg-white border-stone-200 text-stone-600 font-bold hover:border-stone-400"
                   }`}
                 >
-                  <div className="flex justify-between items-center text-xs font-bold">
+                  <div className="flex justify-between items-center text-xs md:text-sm font-black">
                     <span>{item.name}</span>
-                    <span className="text-[8px] font-mono text-emerald-800 font-black">{item.rate}</span>
+                    <span className="text-[9px] md:text-xs font-mono text-sky-700 font-black">{item.rate}</span>
                   </div>
-                  <span className="text-[9px] block text-stone-500 mt-1">{item.desc}</span>
+                  <span className="text-[10px] md:text-xs block text-stone-500 mt-1.5 font-semibold">{item.desc}</span>
                 </button>
               ))}
             </div>
 
-            <div className="bg-stone-50 p-2.5 rounded-lg border border-stone-200 text-[10px] text-stone-605 text-stone-600 flex items-center gap-1.5 leading-relaxed font-mono font-bold shadow-sm">
-              <Coins size={12} className="text-emerald-600" />
+            <div className="bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs text-stone-600 flex items-center gap-2 leading-relaxed font-mono font-bold shadow-sm">
+              <Coins size={14} className="text-sky-500" />
               <span>Native 82SHOPS token includes free Swiss trust structuring templates.</span>
             </div>
           </div>
         )}
 
         {step === 2 && (
-          <div className="space-y-4 mt-3 fade-in">
-            <div className="space-y-1">
-              <span className="text-[10px] font-mono font-black text-emerald-700 uppercase tracking-widest block">
+          <div className="space-y-4 md:space-y-5 mt-4 fade-in">
+            <div className="space-y-1.5">
+              <span className="text-xs font-mono font-black text-sky-600 uppercase tracking-wider block">
                 Question 02
               </span>
-              <h4 className="text-xs font-bold text-stone-900 text-sm">
+              <h4 className="text-sm md:text-base font-black text-[#111827]">
                 Describe your desired estate physical atmosphere and vibe:
               </h4>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {[
                 { id: "lagoon", title: "Tropical Overwater Lagoon Retreat", desc: "Pristine waterslides, stargazing glass ceiling, and reef-rich lagoons." },
                 { id: "alpine", title: "Swiss Alps Cantonal Timber Chalet", desc: "Ski-in ski-out high alpine trails, thermal pools, and custom private trust safes." },
@@ -135,27 +135,27 @@ export default function Matchmaker({ listings, onSelectMatch, onClose }: Matchma
                 <button
                   key={item.id}
                   onClick={() => setPreferredVibe(item.id)}
-                  className={`w-full p-2.5 rounded-xl border text-left flex items-center gap-3 transition ${
+                  className={`w-full p-3 rounded-xl border text-left flex items-center gap-3.5 transition cursor-pointer ${
                     preferredVibe === item.id
-                      ? "bg-emerald-50 border-emerald-500 text-emerald-800 font-extrabold"
-                      : "bg-white border-stone-200 text-stone-600 font-bold hover:border-stone-400"
+                      ? "bg-sky-100 border-sky-300 text-sky-750 font-black"
+                      : "bg-white border-stone-200 text-stone-605 font-bold hover:border-stone-400"
                   }`}
                 >
-                  <div className={`h-2.5 w-2.5 rounded-full ${preferredVibe === item.id ? "bg-emerald-500 animate-pulse" : "bg-stone-300"}`} />
+                  <div className={`h-3 w-3 rounded-full shrink-0 ${preferredVibe === item.id ? "bg-sky-505 bg-sky-500 animate-pulse" : "bg-stone-300"}`} />
                   <div>
-                    <div className="text-xs font-extrabold text-stone-900">{item.title}</div>
-                    <div className="text-[9.5px] text-stone-500 mt-0.5 font-bold">{item.desc}</div>
+                    <div className="text-xs md:text-sm font-black text-stone-900">{item.title}</div>
+                    <div className="text-[11px] md:text-xs text-stone-500 mt-1 font-semibold">{item.desc}</div>
                   </div>
                 </button>
               ))}
             </div>
 
-            <div className="space-y-1 pt-1.5 border-t border-stone-200">
-              <span className="text-[10px] font-mono font-black text-emerald-700 uppercase tracking-widest block">
+            <div className="space-y-2 pt-2 border-t border-stone-200">
+              <span className="text-xs font-mono font-black text-sky-600 uppercase tracking-wider block">
                 Question 03
               </span>
-              <h4 className="text-xs font-bold text-stone-900 text-sm">Target Budget Class limits:</h4>
-              <div className="grid grid-cols-3 gap-1.5 pt-1">
+              <h4 className="text-sm font-black text-[#111827]">Target Budget Class limits:</h4>
+              <div className="grid grid-cols-3 gap-2.5 pt-1">
                 {[
                   { id: "high", label: "Strategic ($3M-$7M)" },
                   { id: "sovereign", label: "Premium ($7M-$12M)" },
@@ -164,9 +164,9 @@ export default function Matchmaker({ listings, onSelectMatch, onClose }: Matchma
                   <button
                     key={item.id}
                     onClick={() => setBudgetRange(item.id)}
-                    className={`text-[9px] font-mono py-1.5 px-1.5 rounded-lg border text-center transition ${
+                    className={`text-[10px] md:text-xs font-mono py-2 px-1.5 rounded-lg border text-center transition cursor-pointer ${
                       budgetRange === item.id
-                        ? "bg-emerald-500 border-emerald-600 text-white font-black"
+                        ? "bg-sky-500 border-sky-500 text-white font-black shadow-sm"
                         : "bg-white border-stone-250 text-stone-500 font-bold hover:border-stone-400"
                     }`}
                   >
@@ -179,27 +179,27 @@ export default function Matchmaker({ listings, onSelectMatch, onClose }: Matchma
         )}
 
         {step === 3 && (
-          <div className="text-center py-6 mt-4 space-y-4 fade-in flex-1 flex flex-col justify-center items-center">
+          <div className="text-center py-8 mt-5 space-y-4 fade-in flex-1 flex flex-col justify-center items-center">
             <div className="relative">
-              <span className="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping" />
-              <div className="relative h-14 w-14 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-lg shadow-emerald-500/30">
-                <ShieldCheck size={28} />
+              <span className="absolute inset-0 rounded-full bg-sky-200/25 animate-ping" />
+              <div className="relative h-16 w-16 rounded-full bg-sky-500 text-white flex items-center justify-center shadow-lg shadow-black/5 border border-sky-305">
+                <ShieldCheck size={32} />
               </div>
             </div>
 
-            <div>
-              <h4 className="font-heading font-black text-sm text-stone-905 text-stone-900">
+            <div className="space-y-1.5">
+              <h4 className="font-heading font-black text-sm md:text-base text-stone-900 uppercase">
                 Sovereign Estate Sync Implemented!
               </h4>
-              <p className="text-[11px] text-stone-605 text-stone-600 max-w-[290px] mx-auto mt-2 leading-relaxed font-semibold">
-                We calculated your physical compatibility ratio at <span className="text-emerald-705 text-emerald-750 text-emerald-800 font-black font-mono">98.4%</span>.
+              <p className="text-xs md:text-sm text-[#374151] max-w-[320px] mx-auto leading-relaxed font-semibold">
+                We calculated your physical compatibility ratio at <span className="text-sky-700 font-black font-mono">98.4%</span>.
                 Your perfect matching listing is officially selected and highlighted on the map!
               </p>
             </div>
 
-            <div className="text-[10.5px] font-mono text-stone-800 bg-stone-50 p-3 rounded-lg border border-stone-200 max-w-[280px] shadow-sm">
-              <div className="text-[9px] text-stone-500 uppercase font-bold mb-1 flex items-center gap-1 justify-center font-mono">
-                <MapPin size={9} className="text-emerald-600" />
+            <div className="text-xs font-mono text-stone-800 bg-stone-50 p-3.5 rounded-xl border border-stone-200 max-w-[305px] shadow-sm leading-relaxed font-bold">
+              <div className="text-[9.5px] text-stone-500 uppercase font-black mb-1.5 flex items-center gap-1 justify-center font-mono">
+                <MapPin size={11} className="text-sky-500" />
                 <span>Selected Destination Coords locked</span>
               </div>
               "Your personalized deed setup and trust planning is actively synced in the 1:1 broker dealroom."
@@ -208,29 +208,29 @@ export default function Matchmaker({ listings, onSelectMatch, onClose }: Matchma
         )}
       </div>
 
-      <div className="pt-3 border-t border-stone-200 flex gap-2">
+      <div className="pt-3 border-t border-stone-200 flex gap-2 w-full">
         {step < 3 ? (
           <>
             {step > 1 && (
               <button
                 onClick={() => setStep(prev => prev - 1)}
-                className="px-3 bg-stone-100 hover:bg-stone-200 hover:text-stone-900 border border-stone-250 text-stone-600 font-bold text-xs py-2 rounded-xl transition cursor-pointer"
+                className="px-4 bg-stone-100 hover:bg-stone-200 hover:text-stone-900 border border-stone-250 text-stone-600 font-black text-xs md:text-sm py-2.5 rounded-xl transition cursor-pointer"
               >
                 Prev
               </button>
             )}
             <button
               onClick={step === 2 ? handleMatchCalculation : () => setStep(prev => prev + 1)}
-              className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-heading font-black text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer shadow-md shadow-emerald-500/10"
+              className="flex-1 bg-sky-500 hover:bg-sky-600 text-white font-heading font-black text-xs md:text-sm py-3 rounded-xl transition flex items-center justify-center gap-1.5 cursor-pointer shadow-md shadow-sky-500/15"
             >
-              <Sparkles size={12} className="text-white shrink-0" />
+              <Sparkles size={14} className="text-white shrink-0" />
               <span>{step === 2 ? "Generate Sovereign Match" : "Proceed"}</span>
             </button>
           </>
         ) : (
           <button
             onClick={onClose}
-            className="w-full bg-stone-905 bg-stone-900 hover:bg-stone-850 border border-stone-800 text-white font-heading font-black text-xs py-2.5 rounded-xl transition cursor-pointer"
+            className="w-full bg-sky-500 hover:bg-sky-600 text-white font-heading font-black text-xs md:text-sm py-3 rounded-xl transition cursor-pointer shadow-md border border-sky-300"
           >
             Settle Into Dealroom Workspace
           </button>

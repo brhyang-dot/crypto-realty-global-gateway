@@ -55,28 +55,28 @@ export default function WorldMap({
   };
 
   return (
-    <div className="relative w-full rounded-2xl border border-stone-200 bg-white p-6 shadow-md overflow-hidden text-stone-900">
+    <div className="relative w-full rounded-2xl border border-stone-200 bg-white p-6 shadow-md overflow-hidden text-stone-900 font-sans">
       {/* Map Header */}
       <div className="mb-4 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
         <div>
-          <h2 className="font-heading text-lg font-bold text-stone-900 flex items-center gap-2">
-            <span className="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-ping" />
+          <h2 className="font-heading text-base md:text-lg font-black text-stone-900 flex flex-wrap items-center gap-2">
+            <span className="flex h-2.5 w-2.5 rounded-full bg-sky-55 px-1 py-1 rounded bg-sky-500 animate-pulse" />
             <span>Real-Time Collaborative World Map Board</span>
-            <span className="text-xs font-mono font-normal text-emerald-700 border border-emerald-400/40 px-2 py-0.5 rounded bg-emerald-50">
+            <span className="text-[10px] md:text-xs font-mono font-black text-sky-700 border border-sky-300 px-2.5 py-0.5 rounded-lg bg-sky-50 uppercase">
               LIVE BROADCAST
             </span>
           </h2>
-          <p className="text-xs text-stone-500 mt-1">
+          <p className="text-xs md:text-sm text-stone-500 font-semibold mt-1">
             Click any coordinate on the map to place a purchase request inquiry or broker advice pin.
           </p>
         </div>
-        <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
-          <div className="flex items-center gap-1.5 bg-stone-100 border border-stone-200 px-2.5 py-1.5 rounded-md">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="flex flex-wrap items-center gap-3 text-xs font-mono font-bold">
+          <div className="flex items-center gap-1.5 bg-stone-100 border border-stone-200 px-2.5 py-1.5 rounded-lg">
+            <span className="h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
             <span className="text-stone-700">Active Listings</span>
           </div>
-          <div className="flex items-center gap-1.5 bg-stone-100 border border-stone-200 px-2.5 py-1.5 rounded-md">
-            <span className="h-2 w-2 rounded-full bg-emerald-400" />
+          <div className="flex items-center gap-1.5 bg-stone-100 border border-stone-200 px-2.5 py-1.5 rounded-lg">
+            <span className="h-2.5 w-2.5 rounded-full bg-sky-400" />
             <span className="text-stone-700">Shared Pins / Notes</span>
           </div>
         </div>
@@ -86,12 +86,12 @@ export default function WorldMap({
       <div 
         ref={mapContainerRef}
         onClick={handleMapClick}
-        className="relative w-full aspect-[2/1] bg-[#e3e9f0] border border-stone-200 rounded-xl overflow-hidden cursor-crosshair select-none shadow-inner"
+        className="relative w-full aspect-[2/1] bg-[#eef8fe] border border-stone-200 rounded-xl overflow-hidden cursor-crosshair select-none shadow-inner"
         style={{
           backgroundImage: `
-            radial-gradient(circle at 1px 1px, rgba(16, 185, 129, 0.25) 1.5px, transparent 0),
-            linear-gradient(to right, rgba(16, 185, 129, 0.08) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(16, 185, 129, 0.08) 1px, transparent 1px)
+            radial-gradient(circle at 1px 1px, rgba(14, 165, 233, 0.2) 1.5px, transparent 0),
+            linear-gradient(to right, rgba(14, 165, 233, 0.07) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(14, 165, 233, 0.07) 1px, transparent 1px)
           `,
           backgroundSize: '24px 24px, 4.16% 8.33%, 8.33% 4.16%',
           backgroundPosition: 'center',
@@ -99,21 +99,21 @@ export default function WorldMap({
         }}
       >
         {/* Beautiful tech display markings */}
-        <div className="absolute top-2 left-3 font-mono text-[9px] text-stone-500 pointer-events-none tracking-widest leading-none">
+        <div className="absolute top-2.5 left-3.5 font-mono text-[9px] md:text-[10px] text-stone-500 pointer-events-none tracking-widest leading-normal font-black">
           LATITUDE & LONGITUDE TRANSIT RECEPTOR <br/>
           SYS: ACTIVE // GP-82SHOPS-NETWORK
         </div>
-        <div className="absolute bottom-2 right-3 font-mono text-[9px] text-stone-500 pointer-events-none tracking-wider">
+        <div className="absolute bottom-2.5 right-3.5 font-mono text-[9px] md:text-[10px] text-stone-500 pointer-events-none tracking-wider font-semibold">
           WGS 84 / MERCATOR PROJECTION SCREEN
         </div>
 
         {/* Major Latitude Lines Indicators */}
-        <div className="absolute left-0 right-0 top-1/2 border-t border-dashed border-stone-300 pointer-events-none flex justify-between px-2">
-          <span className="font-mono text-[8px] text-stone-500 -translate-y-2.5">(EQUATOR 0°N)</span>
-          <span className="font-mono text-[8px] text-stone-500 -translate-y-2.5">0°W</span>
+        <div className="absolute left-0 right-0 top-1/2 border-t border-dashed border-stone-300 pointer-events-none flex justify-between px-2.5">
+          <span className="font-mono text-[8px] md:text-[9.5px] text-stone-500 -translate-y-2.5 font-bold">(EQUATOR 0°N)</span>
+          <span className="font-mono text-[8px] md:text-[9.5px] text-stone-500 -translate-y-2.5 font-bold">0°W</span>
         </div>
-        <div className="absolute top-0 bottom-0 left-1/2 border-l border-dashed border-stone-300 pointer-events-none flex flex-col justify-end p-2">
-          <span className="font-mono text-[8px] text-stone-500 leading-none">PRIME MERIDIAN</span>
+        <div className="absolute top-0 bottom-0 left-1/2 border-l border-dashed border-stone-300 pointer-events-none flex flex-col justify-end p-2.5">
+          <span className="font-mono text-[8px] md:text-[9px] text-stone-500 leading-none font-bold">PRIME MERIDIAN</span>
         </div>
 
         {/* Visual Simulated Continents Overlay for Atmosphere - Highly Visible Standard Coordinates Map */}
@@ -122,7 +122,7 @@ export default function WorldMap({
           className="absolute inset-0 w-full h-full opacity-[0.95] pointer-events-none z-10"
           preserveAspectRatio="none"
         >
-          <g stroke="rgba(16, 185, 129, 0.45)" strokeWidth="0.8" fill="#ffffff">
+          <g stroke="rgba(14, 165, 233, 0.3)" strokeWidth="0.8" fill="#f6fbfd">
             {/* North America */}
             <polygon points="30,15 95,15 115,22 135,28 128,45 118,52 124,68 112,78 100,75 92,60 76,58 64,42 42,48 30,35 15,30 20,20" />
             
@@ -146,7 +146,7 @@ export default function WorldMap({
           </g>
 
           {/* Cyan glow markers at major resort hubs */}
-          <g fill="rgba(6, 182, 212, 0.75)">
+          <g fill="rgba(56, 189, 248, 0.7)">
             {/* Maldives Hub Anchor */}
             <circle cx="253.2" cy="86.8" r="3" className="animate-pulse" />
             {/* Saint-Tropez / Monaco Anchor */}
@@ -158,25 +158,23 @@ export default function WorldMap({
             {/* Hawaii Hub */}
             <circle cx="23.7" cy="69.2" r="3" className="animate-pulse" />
           </g>
-        </svg>
-
-        {/* MAP NOISE LABELS for Luxury Vibe */}
-        <div className="absolute top-[25%] left-[20%] font-mono text-[10px] text-stone-500 font-bold pointer-events-none tracking-wide">
+        </svg>        {/* MAP NOISE LABELS for Luxury Vibe */}
+        <div className="absolute top-[25%] left-[20%] font-mono text-[10px] text-stone-500 font-black pointer-events-none tracking-widest leading-none uppercase">
           NORTH AMERICA
         </div>
-        <div className="absolute top-[60%] left-[30%] font-mono text-[10px] text-stone-500 font-bold pointer-events-none tracking-wide">
+        <div className="absolute top-[60%] left-[30%] font-mono text-[10px] text-stone-500 font-black pointer-events-none tracking-widest leading-none uppercase">
           SOUTH AMERICA
         </div>
-        <div className="absolute top-[22%] left-[49%] font-mono text-[10px] text-stone-500 font-bold pointer-events-none tracking-wide">
+        <div className="absolute top-[22%] left-[49%] font-mono text-[10px] text-stone-500 font-black pointer-events-none tracking-widest leading-none uppercase">
           EUROPE
         </div>
-        <div className="absolute top-[48%] left-[51%] font-mono text-[10px] text-stone-500 font-bold pointer-events-none tracking-wide">
+        <div className="absolute top-[48%] left-[51%] font-mono text-[10px] text-stone-500 font-black pointer-events-none tracking-widest leading-none uppercase">
           AFRICA
         </div>
-        <div className="absolute top-[28%] left-[72%] font-mono text-[10px] text-stone-500 font-bold pointer-events-none tracking-wide">
+        <div className="absolute top-[28%] left-[72%] font-mono text-[10px] text-stone-500 font-black pointer-events-none tracking-widest leading-none uppercase">
           ASIA
         </div>
-        <div className="absolute top-[72%] left-[81%] font-mono text-[10px] text-stone-500 font-bold pointer-events-none tracking-wide">
+        <div className="absolute top-[72%] left-[81%] font-mono text-[10px] text-stone-500 font-black pointer-events-none tracking-widest leading-none uppercase">
           OCEANIA
         </div>
 
@@ -201,40 +199,40 @@ export default function WorldMap({
             >
               {/* Highlight Circle for Selected Listing */}
               {isSelected && (
-                <span className="absolute -inset-4 rounded-full bg-emerald-500/35 animate-ping pointer-events-none z-0" />
+                <span className="absolute -inset-4 rounded-full bg-sky-45 bg-sky-400/30 animate-ping pointer-events-none z-0" />
               )}
               
               {/* Pin UI */}
               <button 
-                className={`relative flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 shadow-xl ${
+                className={`relative flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 shadow-xl cursor-pointer ${
                   isSelected
-                    ? "bg-emerald-500 border-white text-white scale-125 z-40 shadow-emerald-500/30"
+                    ? "bg-sky-500 border-sky-300 text-white scale-125 z-40 shadow-sky-500/20 font-black"
                     : isSold
-                    ? "bg-stone-300 border-stone-400 text-stone-600 scale-90"
+                    ? "bg-stone-300 border-stone-400 text-stone-605 scale-90"
                     : isPending
                     ? "bg-purple-600 border-purple-300 text-[#ffffff] animate-pulse"
-                    : "bg-[#ffffff] hover:bg-emerald-50 border-emerald-500 text-emerald-700 hover:scale-110"
+                    : "bg-[#ffffff] hover:bg-stone-50 border-stone-400 text-stone-850 hover:scale-110"
                 }`}
               >
-                <Landmark size={14} className={isSelected ? "animate-bounce" : ""} />
+                <Landmark size={14} className={isSelected ? "animate-bounce text-white" : "text-sky-600"} />
                 
                 {/* Visual indicator of luxury status */}
                 <span className={`absolute -top-1 -right-1 flex h-2.5 w-2.5 rounded-full ${
-                  isSold ? "bg-red-500" : isPending ? "bg-purple-500" : "bg-emerald-400"
+                  isSold ? "bg-red-500" : isPending ? "bg-purple-500" : "bg-sky-500"
                 }`} />
               </button>
 
               {/* Mini Info tooltip */}
               {hoveredListing?.id === l.id && (
-                <div className="absolute bottom-9 left-1/2 -translate-x-1/2 bg-white border-2 border-emerald-500/80 px-3 py-2 rounded-xl text-stone-900 min-w-48 text-xs font-sans shadow-2xl pointer-events-none z-50">
-                  <div className="font-bold text-stone-900 truncate">{l.title}</div>
-                  <div className="text-[10px] text-stone-500 font-mono mt-0.5 mt-1 flex justify-between">
+                <div className="absolute bottom-9 left-1/2 -translate-x-1/2 bg-white border-2 border-sky-300 px-4 py-3 rounded-xl text-stone-900 min-w-56 text-xs font-sans shadow-2xl pointer-events-none z-50 animate-fade-in">
+                  <div className="font-black text-xs md:text-sm text-[#111827] truncate leading-tight">{l.title}</div>
+                  <div className="text-[10px] md:text-xs text-stone-500 font-mono mt-1.5 flex justify-between font-bold">
                     <span>{l.region} ({l.country})</span>
-                    <span className="text-emerald-600 font-bold">${(l.priceUsd / 1000000).toFixed(1)}M USD</span>
+                    <span className="text-sky-700 font-black">${(l.priceUsd / 1000000).toFixed(1)}M USD</span>
                   </div>
-                  <div className="flex gap-1 mt-1.5 overflow-hidden">
+                  <div className="flex gap-1 mt-2.5 overflow-hidden">
                     {l.coins.map(c => (
-                      <span key={c} className="text-[9px] font-mono bg-stone-100 border border-stone-250 px-1.5 rounded text-stone-600">
+                      <span key={c} className="text-[9.5px] font-mono bg-sky-500 text-white border border-[#111827]/10 px-1.5 py-0.5 rounded-md font-black">
                         {c}
                       </span>
                     ))}
@@ -263,30 +261,35 @@ export default function WorldMap({
                 onSelectNote(n);
               }}
             >
+              {/* Highlight Circle for Selected Note Pin */}
+              {isSelected && (
+                <span className="absolute -inset-2.5 rounded-lg bg-sky-200/40 animate-ping pointer-events-none z-0" />
+              )}
+
               {/* Map Note Anchor icon */}
               <button
-                className={`relative flex h-7 w-7 items-center justify-center rounded-lg border transition-all duration-300 shadow-lg ${
+                className={`relative flex h-7 w-7 items-center justify-center rounded-lg border transition-all duration-300 shadow-lg cursor-pointer ${
                   isSelected
-                    ? "bg-emerald-550 border-white text-white scale-125 z-40 shadow-emerald-500/30"
+                    ? "bg-sky-505 bg-sky-500 border-sky-300 text-white scale-125 z-40 shadow-stone-900/10 font-black"
                     : isAgent
-                    ? "bg-emerald-50 hover:bg-emerald-100 border-emerald-500 text-emerald-800 hover:scale-110"
-                    : "bg-stone-50 hover:bg-stone-100 border-emerald-400 text-emerald-700 hover:scale-110"
+                    ? "bg-sky-400/80 hover:bg-sky-500 text-white hover:scale-110 border-sky-300"
+                    : "bg-white border-stone-300 text-stone-850 hover:scale-110"
                 }`}
               >
-                <MessageSquare size={13} className={isSelected ? "text-white" : ""} />
+                <MessageSquare size={13} className={isSelected ? "text-white" : "text-sky-600"} />
               </button>
 
               {/* Hover Box for Map Note */}
               {hoveredNote?.id === n.id && (
-                <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-white border-2 border-emerald-500 px-3 py-2.5 rounded-xl text-stone-800 min-w-56 text-xs font-sans shadow-2xl pointer-events-none z-50">
-                  <div className="flex items-center justify-between text-[10px] font-mono text-emerald-700 mb-1 font-bold">
-                    <span className="font-semibold">{n.author}</span>
-                    <span className="opacity-80 font-normal">{n.coinType}</span>
+                <div className="absolute top-8 left-1/2 -translate-x-1/2 bg-white border border-stone-300 p-3.5 rounded-xl text-stone-800 min-w-60 text-xs font-sans shadow-2xl pointer-events-none z-50">
+                  <div className="flex items-center justify-between text-[10px] md:text-xs font-mono text-sky-750 mb-1.5 font-black">
+                    <span>{n.author}</span>
+                    <span className="opacity-85">{n.coinType}</span>
                   </div>
-                  <p className="text-stone-700 line-clamp-2 leading-relaxed text-[11px] font-sans">
+                  <p className="text-stone-700 line-clamp-2 leading-relaxed text-xs font-bold font-sans">
                     {n.content}
                   </p>
-                  <div className="text-[9px] text-stone-500 font-mono mt-1 text-right">
+                  <div className="text-[9.5px] text-stone-500 font-mono mt-2 text-right">
                     {n.timestamp}
                   </div>
                 </div>
@@ -297,16 +300,16 @@ export default function WorldMap({
       </div>
 
       {/* Helper Legend Panel */}
-      <div className="mt-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border-t border-stone-200 pt-4 text-xs text-stone-500">
-        <div className="flex flex-wrap items-center gap-4 text-stone-600">
-          <span className="flex items-center gap-1">
-            <Info size={13} className="text-emerald-600" />
+      <div className="mt-4 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between border-t border-stone-200 pt-4 text-xs text-stone-550 text-stone-500">
+        <div className="flex flex-wrap items-center gap-4 text-stone-600 font-semibold">
+          <span className="flex items-center gap-1.5">
+            <Info size={14} className="text-sky-500" />
             <span>Click any coastal point or tourist spot on the map to drop a collaborative pin note.</span>
           </span>
         </div>
-        <div className="font-mono text-[11px] text-stone-600 flex items-center gap-1.5 bg-stone-100 border border-stone-200 px-3 py-1.5 rounded-lg font-medium">
-          <Sparkles size={12} className="text-emerald-600 animate-pulse" />
-          <span className="text-stone-800 font-bold">82SHOPS Token Special Exemption Active</span>
+        <div className="font-mono text-[11px] text-stone-600 flex items-center gap-1.5 bg-sky-50 border border-sky-200 px-3 py-1.5 rounded-lg font-black shrink-0">
+          <Sparkles size={13} className="text-sky-500 animate-pulse" />
+          <span className="text-sky-700">82SHOPS Token Special Exemption Active</span>
         </div>
       </div>
     </div>

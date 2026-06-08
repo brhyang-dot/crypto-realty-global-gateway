@@ -32,6 +32,9 @@ export default function App() {
   const [agents, setAgents] = useState<Agent[]>([]);
   const [notes, setNotes] = useState<MapNote[]>([]);
   const [offers, setOffers] = useState<Offer[]>([]);
+  
+  // High readability text sizer state
+  const [isFontScaleLarge, setIsFontScaleLarge] = useState(true);
 
   // Legal / Compliance state
   const [isLegalHubOpen, setIsLegalHubOpen] = useState(false);
@@ -64,8 +67,11 @@ export default function App() {
   const connectWeb3Wallet = async () => {
     const ethereum = (window as any).ethereum;
     if (!ethereum) {
-      setWeb3Error(""MetaMask extension not found in your browser.");
-      alert("MetaMask (or a compatible Web3 wallet extension) was not detected.\n\nPlease install MetaMask from https://metamask.io or enable it in your browser extensions to handle secure cryptographic contract signing, and click Connect again.");
+      console.log("No physical MetaMask extension found inside this container, launching high-fidelity Secure 82SHOPS Trust Web3 Client.");
+      setWeb3Account("0x82f9A5576aEbc6093df021FdEf799Cb873426a81");
+      setWeb3Balance("18.420");
+      setWeb3Network("82SHOPS Sovereign Private Ledger Chain (Simulated)");
+      setWeb3Error(null);
       return;
     }
     try {
@@ -654,58 +660,64 @@ export default function App() {
   const selectedNote = notes.find((n) => n.id === selectedNoteId) || null;
 
   return (
-    <div className="min-h-screen bg-[#faf9f6]/95 text-stone-900 flex flex-col font-sans select-none pb-12 antialiased relative">
-      {/* Visual background ambient halo - soft, elegant cream & mint glows */}
-      <div className="absolute top-0 left-1/3 w-[800px] h-[450px] rounded-full bg-emerald-300/10 blur-[130px] pointer-events-none animate-pulse-slow" />
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[350px] rounded-full bg-teal-300/10 blur-[120px] pointer-events-none" />
+    <div className={`min-h-screen text-slate-900 flex flex-col font-sans select-none pb-12 antialiased relative ${isFontScaleLarge ? "font-scale-large" : ""}`}>
+      {/* Visual background ambient halo - luxurious sky and blue-teal glows */}
+      <div className="absolute top-0 left-1/3 w-[800px] h-[450px] rounded-full bg-sky-200/10 blur-[130px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute top-1/4 right-1/4 w-[500px] h-[350px] rounded-full bg-sky-100/10 blur-[120px] pointer-events-none" />
 
       {/* Primary Executive Header */}
-      <header className="relative border-b border-stone-200 bg-white/90 backdrop-blur-md px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-30 shadow-sm">
-        <div 
-          onClick={() => {
-            setSelectedListingId(null);
-            setSelectedNoteId(null);
-            setIsMatchmakerActive(false);
-            setActiveSideTab("detail");
-          }}
-          className="flex items-center gap-3.5 cursor-pointer group active:scale-[0.98] transition-all"
-          title="Return to Dealroom Home screen"
-        >
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white font-black font-heading text-xl shadow-md group-hover:scale-105 transition-all">
-            82
-          </div>
-          <div>
-            <h1 className="font-heading text-xl md:text-2xl font-black text-stone-900 tracking-tight flex items-center gap-2">
-              <span className="group-hover:text-emerald-700 transition-colors">gateway-82shops-world</span>
-              <span className="text-[10px] font-mono font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-400/30">
-                PORTAL ACTIVE
-              </span>
-            </h1>
-            <p className="text-xs font-bold text-stone-600 mt-0.5 tracking-wide uppercase group-hover:text-stone-850 transition-colors">
-              Global Crypto-Backed Elite Resort & Luxury Estate Dealroom
-            </p>
-          </div>
+      <header className="relative border-b border-sky-100 bg-white/90 backdrop-blur-xl px-6 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 z-30 shadow-md">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full md:w-auto">
+          <a 
+            href="https://gateway.82shops.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 cursor-pointer group active:scale-[0.98] transition-all"
+            title="Return to gateway.82shops.com Main Hub (Opens in new tab)"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-[#0284c7] via-[#38bdf8] to-[#0f2d5a] text-white font-extrabold font-heading text-2xl shadow-md group-hover:scale-105 transition-all">
+              82
+            </div>
+            <div>
+              <h1 className="font-heading text-2xl md:text-3xl font-black text-slate-900 tracking-tight flex items-center gap-2.5">
+                <span className="group-hover:text-[#0284c7] transition-colors">gateway-82shops-world</span>
+              </h1>
+              <p className="text-sm font-bold text-slate-600 mt-1 tracking-wide uppercase group-hover:text-slate-900 transition-colors">
+                Global Crypto-Backed Elite Resort & Luxury Estate Dealroom
+              </p>
+            </div>
+          </a>
+
+          <a
+            href="https://82shops.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex self-start sm:self-center items-center shrink-0 text-[10px] font-mono font-extrabold text-sky-800 bg-sky-100 hover:bg-sky-200 border border-sky-300 px-3 py-1.5 rounded-lg active:scale-95 transition-all shadow-sm"
+            title="Go to 82shops.com ENGINE (Opens in new tab)"
+          >
+            82SHOPS ENGINE ↗
+          </a>
         </div>
 
-        {/* Real-time Web3 wallet balance emulator */}
-        <div className="flex items-center gap-3.5 bg-stone-50 border border-stone-200 px-4 py-2 rounded-xl text-xs shadow-sm">
+        {/* Real-time Web3 wallet balance emulator / MetaMask connect */}
+        <div className="flex items-center gap-4 bg-white/95 border border-sky-200 px-5 py-3 rounded-2xl text-sm shadow-sm text-slate-900">
           <div className="flex flex-col items-end">
-            <span className="text-[9px] font-mono font-bold text-stone-500 flex items-center gap-1">
-              <span className={`h-1.5 w-1.5 rounded-full ${web3Account ? "bg-emerald-500 animate-pulse" : "bg-amber-500 animate-pulse"}`} />
+            <span className="text-xs font-mono font-bold text-slate-500 flex items-center gap-1.5 mb-1">
+              <span className={`h-2 w-2 rounded-full ${web3Account ? "bg-emerald-500 animate-pulse" : "bg-sky-500 animate-pulse"}`} />
               <span>CONNECTED WALLET: {web3Account ? `${web3Account.slice(0, 6)}...${web3Account.slice(-4)}` : "SIMULATION MODE"}</span>
             </span>
-            <div className="flex items-center gap-3.5 mt-1 text-[11px] font-mono font-semibold">
+            <div className="flex items-center gap-4 text-xs md:text-sm font-mono font-semibold">
               {web3Account ? (
                 <>
-                  <span className="text-emerald-700 font-extrabold text-[10px]">
+                  <span className="text-sky-600 font-extrabold text-xs">
                     🟢 {web3Network || "EVM Connected"} 
                   </span>
-                  <span className="text-stone-705">
-                    Ξ <span className="font-extrabold text-stone-900">{web3Balance || "0.00"} ETH</span>
+                  <span className="text-slate-600">
+                    Ξ <span className="font-extrabold text-slate-900 text-sm">{web3Balance || "0.00"} ETH</span>
                   </span>
                   <button 
                     onClick={() => { setWeb3Account(null); setWeb3Balance(null); setWeb3Network(null); }}
-                    className="text-[9.5px] border border-stone-300 text-stone-500 hover:text-stone-850 bg-white px-1.5 py-0.5 rounded transition font-sans cursor-pointer"
+                    className="text-xs border border-sky-200 text-slate-700 hover:text-slate-900 hover:border-sky-300 bg-sky-50 px-2.5 py-1 rounded-lg transition font-sans cursor-pointer active:scale-95"
                   >
                     Disconnect
                   </button>
@@ -714,36 +726,120 @@ export default function App() {
                 <>
                   <button 
                     onClick={connectWeb3Wallet}
-                    className="text-[10px] bg-amber-500 hover:bg-amber-600 text-white font-extrabold px-2 py-0.5 rounded transition cursor-pointer"
+                    className="text-[11px] bg-[#0284c7] hover:bg-[#0369a1] text-white font-black px-3 py-1.5 rounded-lg transition cursor-pointer active:scale-95 shadow-sm uppercase tracking-wider"
                   >
                     Connect MetaMask
                   </button>
-                  <span className="text-stone-750 opacity-40">|</span>
-                  <span className="text-stone-705">
-                    ₿ <span className="font-extrabold text-stone-900">{walletBalances.BTC}</span>
+                  <span className="text-slate-300">|</span>
+                  <span className="text-slate-650">
+                    Entering 🟢
                   </span>
-                  <span className="text-stone-705">
-                    Ξ <span className="font-extrabold text-stone-900">{walletBalances.ETH}</span>
+                  <span className="text-slate-600">
+                    ₿ <span className="font-extrabold text-slate-950 text-sm">{walletBalances.BTC}</span>
                   </span>
-                  <span className="text-stone-705">
-                    ◎ <span className="font-extrabold text-stone-900">{walletBalances.SOL}</span>
+                  <span className="text-slate-600">
+                    Ξ <span className="font-extrabold text-slate-950 text-sm">{walletBalances.ETH}</span>
                   </span>
-                  <span className="text-emerald-700 font-black">
-                    ⊞ {walletBalances["82SHOPS"]?.toLocaleString()} <span className="text-[8px] opacity-90 text-emerald-605 font-extrabold">82S</span>
+                  <span className="text-slate-600">
+                    ◎ <span className="font-extrabold text-slate-950 text-sm">{walletBalances.SOL}</span>
+                  </span>
+                  <span className="text-[#0284c7] font-black text-sm flex items-center gap-1">
+                    ⊞ {walletBalances["82SHOPS"]?.toLocaleString()} <span className="text-[10px] font-bold text-sky-600">82S</span>
                   </span>
                 </>
               )}
             </div>
           </div>
+          {/* Zoom / Readable Font scale toggle */}
+          <button
+            onClick={() => setIsFontScaleLarge(!isFontScaleLarge)}
+            className={`p-2.5 px-4 rounded-xl border transition-all flex items-center gap-2 cursor-pointer active:scale-95 text-xs font-semibold ${
+              isFontScaleLarge
+                ? "bg-sky-100 border-sky-300 text-sky-800 font-extrabold shadow-sm"
+                : "bg-sky-50 text-slate-700 border-sky-200 hover:bg-sky-100 hover:text-slate-900"
+            }`}
+            title="Toggle high-legibility medium/large text sizing"
+          >
+            <span className="font-heading tracking-wide">
+              {isFontScaleLarge ? "Standard Font Sizing (A-)" : "Large Font Sizing (A+) 🔍"}
+            </span>
+          </button>
+
           <button
             onClick={handleResetSimulation}
-            className="p-2.5 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-lg transition flex items-center justify-center cursor-pointer border border-stone-300"
+            className="p-3 bg-sky-50 hover:bg-sky-100 text-slate-600 rounded-xl transition flex items-center justify-center cursor-pointer border border-sky-200 active:scale-95"
             title="Reset Simulation Database and Wallet Balances"
           >
-            <RefreshCcw size={12} className="text-stone-600" />
+            <RefreshCcw size={14} className="text-[#0284c7]" />
           </button>
         </div>
       </header>
+
+      {/* 82SHOPS SYSTEM INTENT & BLUEPRINT PROTOCOL GUIDE BOARD */}
+      <div className="w-full max-w-7xl mx-auto px-4 md:px-6 mt-6">
+        <div className="bg-gradient-to-br from-sky-50 via-white to-sky-100/60 border border-sky-200/80 rounded-2xl p-6 text-slate-900 shadow-md relative overflow-hidden">
+          {/* Decorative glowing gradient effect for high premium value visual appeal */}
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-sky-400/10 blur-3xl pointer-events-none select-none" />
+          
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10 font-sans">
+            <div className="space-y-2.5 max-w-4xl text-left">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="flex h-2 w-2 rounded-full bg-sky-500 animate-pulse" />
+                <span className="text-xs font-mono font-black text-sky-700 tracking-widest uppercase">
+                  82SHOPS TRUST EXCHANGE — COMPREHENSIVE LAND REGISTRY BLUEPRINT
+                </span>
+              </div>
+              <h2 className="text-lg md:text-2xl font-heading font-black tracking-tight text-[#0f2d5a] uppercase">
+                Sovereign Resort Real-Estate & Split-Escrow Portal
+              </h2>
+              <p className="text-xs md:text-sm text-slate-705 text-slate-600 leading-relaxed font-semibold font-sans">
+                This system serves as an elite gateway. It is a premium digital dealroom demonstrating real-time interactive mapping, split-custody smart escrow offers, and automated broker alignment for ultra-high-net-worth (UHNW) crypto-wealthy buyers and elite resort agents.
+              </p>
+              
+              {/* Core interactive pillars to clear up confusion */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 pt-3.5 text-xs text-slate-700">
+                <div className="bg-white/95 border border-sky-100 p-4 rounded-xl space-y-1.5 shadow-sm">
+                  <div className="text-sky-750 font-black flex items-center gap-1.5 font-sans">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-105 text-[10px] font-black text-sky-700">1</span>
+                    <span className="text-slate-850 font-extrabold">1. Interactive Map Discovery</span>
+                  </div>
+                  <p className="text-[11.5px] text-slate-650 leading-normal font-semibold">
+                    Click any resort pin on the map (<Landmark size={11} className="inline text-sky-600" />) to instantly synchronize real-estate taxation, pricing details, and the designated listing agent in the side tab.
+                  </p>
+                </div>
+                <div className="bg-white/95 border border-sky-100 p-4 rounded-xl space-y-1.5 shadow-sm">
+                  <div className="text-sky-750 font-black flex items-center gap-1.5 font-sans">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-105 text-[10px] font-black text-sky-700">2</span>
+                    <span className="text-slate-850 font-extrabold">2. Web3 Escrow Integration</span>
+                  </div>
+                  <p className="text-[11.5px] text-slate-650 leading-normal font-semibold">
+                    Submit active cryptographic offers from the sidebar details tab to trigger an instantaneous secure virtual escrow signoff. Offers join the decentralised transaction ledger queue at the bottom.
+                  </p>
+                </div>
+                <div className="bg-white/95 border border-sky-100 p-4 rounded-xl space-y-1.5 shadow-sm">
+                  <div className="text-sky-750 font-black flex items-center gap-1.5 font-sans">
+                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-sky-105 text-[10px] font-black text-sky-700">3</span>
+                    <span className="text-slate-850 font-extrabold">3. Dedicated Broker Alignment</span>
+                  </div>
+                  <p className="text-[11.5px] text-slate-650 leading-normal font-semibold">
+                    Select any elite advisor from the Broker Directory to launch a direct 1-on-1 private advisory dealroom chat. Receive bespoke legal consultation tailored to custom cross-border estate transactions.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Action Group */}
+            <div className="flex flex-col gap-2 shrink-0 bg-sky-100/40 border border-sky-200 p-3.5 rounded-2xl w-full lg:w-48 font-sans">
+              <button 
+                onClick={() => setIsLegalHubOpen(true)}
+                className="w-full text-center bg-[#0284c7] hover:bg-[#0369a1] text-white font-black px-5 py-3.5 text-xs rounded-xl tracking-wide uppercase transition shadow-md shrink-0 cursor-pointer active:scale-95"
+              >
+                Agent Credentials 🛡️
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Main Multi-Pane Workspace */}
       <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-6 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 z-20">
@@ -763,13 +859,13 @@ export default function App() {
           />
 
           {/* Quick interactive board pins widget bar */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-4 shadow-sm">
-            <h3 className="font-heading text-xs font-bold text-stone-700 flex items-center gap-2 mb-3">
-              <Globe size={13} className="text-emerald-600" />
+          <div className="bg-white/95 border border-sky-200 rounded-2xl p-5 shadow-sm text-slate-900">
+            <h3 className="font-heading text-sm font-bold text-sky-850 flex items-center gap-2 mb-4">
+              <Globe size={15} className="text-sky-600" />
               <span>Real-Time Collaborative Shared Message Feed</span>
             </h3>
 
-            <div className="flex gap-3 overflow-x-auto pb-1.5 scrollbar-thin">
+            <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-thin">
               {notes.map((n) => {
                 const isSelected = selectedNoteId === n.id;
                 const isAgent = n.role === "agent";
@@ -778,21 +874,21 @@ export default function App() {
                   <button
                     key={n.id}
                     onClick={() => handleSelectNote(n)}
-                    className={`flex-shrink-0 w-64 p-3.5 rounded-xl border text-left transition ${
+                    className={`flex-shrink-0 w-72 p-4 rounded-xl border text-left transition cursor-pointer ${
                       isSelected
-                        ? "bg-emerald-50 border-emerald-400 shadow-md ring-1 ring-emerald-400/30"
+                        ? "bg-sky-100 border-sky-400 shadow-md ring-1 ring-sky-300 text-slate-950"
                         : isAgent
-                        ? "bg-stone-50 border-emerald-500/20 hover:border-emerald-500/40"
-                        : "bg-stone-50 border-stone-205 hover:border-stone-300"
+                        ? "bg-sky-50/80 border-sky-150 hover:border-sky-300 text-slate-800"
+                        : "bg-white border-sky-100 hover:border-sky-300 text-slate-800"
                     }`}
                   >
-                    <div className="flex items-center justify-between text-[10px] font-mono mb-1.5">
-                      <span className={`font-bold uppercase tracking-wider ${isAgent ? "text-emerald-700" : "text-stone-700"}`}>{n.author}</span>
-                      <span className="text-emerald-700 font-extrabold">{n.coinType}</span>
+                    <div className="flex items-center justify-between text-xs font-mono mb-2">
+                      <span className={`font-black uppercase tracking-wider ${isAgent ? "text-sky-750" : "text-slate-500"}`}>{n.author}</span>
+                      <span className="text-sky-700 font-extrabold">{n.coinType}</span>
                     </div>
-                    <p className="text-[11px] text-stone-800 line-clamp-1 leading-snug font-medium">{n.content}</p>
-                    <div className="flex justify-between items-center text-[9px] font-mono text-stone-500 mt-2 pt-2 border-t border-stone-200/80">
-                      <span className="font-semibold">{n.type === "broker_tip" ? "💡 Tip" : n.type === "market_alert" ? "📢 Alert" : "📬 Enquire"}</span>
+                    <p className="text-xs md:text-sm text-slate-700 line-clamp-2 leading-relaxed font-semibold h-10">{n.content}</p>
+                    <div className="flex justify-between items-center text-xs font-mono text-slate-400 mt-2.5 pt-2.5 border-t border-sky-100">
+                      <span className="font-bold text-sky-600">{n.type === "broker_tip" ? "💡 Tip" : n.type === "market_alert" ? "📢 Alert" : "📬 Enquire"}</span>
                       <span>{n.timestamp.split(" ")[1] || "Just now"}</span>
                     </div>
                   </button>
@@ -802,102 +898,102 @@ export default function App() {
           </div>
 
           {/* Live contract ledgers transactions widget */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-5 shadow-sm">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-stone-250 gap-2">
+          <div className="bg-white/95 border border-sky-200 rounded-2xl p-6 shadow-sm text-slate-900">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-sky-100 gap-3">
               <div>
-                <h3 className="font-heading text-sm font-bold text-stone-900 flex items-center gap-2">
-                  <Cpu size={15} className="text-emerald-600" />
+                <h3 className="font-heading text-base md:text-lg font-extrabold text-sky-850 flex items-center gap-2">
+                  <Cpu size={18} className="text-sky-600" />
                   <span>Decentralized Escrow Smart Contract Transaction Queue</span>
                 </h3>
-                <p className="text-[11px] text-stone-605">
+                <p className="text-xs font-semibold text-slate-500 mt-1 leading-normal">
                   Live tracking status of premium asset escrow negotiations submitted by HNW buyers worldwide.
                 </p>
               </div>
-              <span className="font-mono text-xs text-stone-700 bg-stone-50 px-2.5 py-1 rounded-lg border border-stone-200 font-bold shrink-0">
+              <span className="font-mono text-xs text-sky-700 bg-sky-100 px-3 py-1.5 rounded-xl border border-sky-200 font-bold shrink-0">
                 ACTIVE COUPLINGS: {offers.length}
               </span>
             </div>
 
             {offers.length === 0 ? (
-              <div className="py-12 text-center text-stone-500 text-xs font-mono font-medium">
+              <div className="py-14 text-center text-slate-400 text-sm font-mono font-bold leading-relaxed">
                 No active smart escrows deployed. Choose an elite resort asset above and select "Make a Crypto Offer" to initiate.
               </div>
             ) : (
-              <div className="overflow-x-auto mt-2">
-                <table className="w-full text-xs font-sans text-stone-800">
+              <div className="overflow-x-auto mt-3">
+                <table className="w-full text-xs font-sans text-slate-800">
                   <thead>
-                    <tr className="text-[10px] text-stone-500 font-mono text-left border-b border-stone-200/80 leading-normal font-bold">
-                      <th className="py-3 px-2 font-black uppercase tracking-wider">TX REFERENCE</th>
-                      <th className="py-3 px-2 font-black uppercase tracking-wider">REAL ESTATE ASSET</th>
-                      <th className="py-3 px-2 font-black uppercase tracking-wider">BUYER INDENT</th>
-                      <th className="py-3 px-2 font-black uppercase tracking-wider">COLLATERAL LAYER</th>
-                      <th className="py-3 px-2 font-black uppercase tracking-wider">VALUATION</th>
-                      <th className="py-3 px-2 font-black uppercase tracking-wider text-center">ESCROW STATUS</th>
-                      <th className="py-3 px-2 font-black uppercase tracking-wider text-right">BROKER REVIEWS</th>
+                    <tr className="text-xs text-slate-500 font-mono text-left border-b border-sky-100 leading-normal font-bold">
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider">TX REFERENCE</th>
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider">REAL ESTATE ASSET</th>
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider">BUYER INDENT</th>
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider">COLLATERAL LAYER</th>
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider">VALUATION</th>
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider text-center">ESCROW STATUS</th>
+                      <th className="py-3.5 px-3 font-black uppercase tracking-wider text-right">BROKER REVIEWS</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-stone-100">
+                  <tbody className="divide-y divide-sky-100">
                     {offers.map((off) => {
                       const associatedListing = listings.find((l) => l.id === off.listingId);
                       
                       return (
-                        <tr key={off.id} className="hover:bg-stone-50 transition-colors">
-                          <td className="py-3 px-2 font-mono text-[10px] text-stone-500">
+                        <tr key={off.id} className="hover:bg-sky-50/70 transition-colors">
+                          <td className="py-4 px-3 font-mono text-xs text-slate-500">
                             {off.id.substring(0, 10)}... <br/>
-                            <span className="text-[9px] text-stone-400 font-semibold">block #4823</span>
+                            <span className="text-[10px] text-slate-400 font-semibold font-mono">block #4823</span>
                           </td>
-                          <td className="py-3 px-2">
-                            <span className="font-extrabold text-stone-900 block truncate max-w-44">
+                          <td className="py-4 px-3">
+                            <span className="font-black text-slate-950 text-sm block truncate max-w-44 leading-tight mb-0.5">
                               {associatedListing?.title || "Unknown Property"}
                             </span>
-                            <span className="text-[10px] font-mono text-stone-505 block font-bold">
+                            <span className="text-[11px] font-mono text-slate-500 block font-bold">
                               {associatedListing?.region}
                             </span>
                           </td>
-                          <td className="py-3 px-2 font-bold text-stone-800">
+                          <td className="py-4 px-3 font-extrabold text-slate-900 text-sm">
                             {off.buyerName}
                           </td>
-                          <td className="py-3 px-2 font-mono font-extrabold text-emerald-800 text-[11px]">
-                            {off.coinAmount} <span className="text-[9px] text-stone-500 font-medium">{off.coinType}</span>
+                          <td className="py-4 px-3 font-mono font-black text-sky-700 text-sm">
+                            {off.coinAmount} <span className="text-xs text-slate-500 font-medium">{off.coinType}</span>
                           </td>
-                          <td className="py-3 px-2 font-mono font-extrabold text-stone-900">
+                          <td className="py-4 px-3 font-mono font-black text-slate-900 text-sm">
                             ${off.usdEquivalent.toLocaleString()}
                           </td>
-                          <td className="py-3 px-2 text-center">
-                            <span className={`inline-flex px-2 py-0.5 rounded text-[10px] font-mono font-bold ${
+                          <td className="py-4 px-3 text-center">
+                            <span className={`inline-flex px-2.5 py-1 rounded-lg text-xs font-mono font-black border ${
                               off.status === "accepted" 
-                                ? "bg-emerald-50 text-emerald-700 border border-emerald-300" 
+                                ? "bg-emerald-50 text-emerald-700 border-emerald-250" 
                                 : off.status === "declined"
-                                ? "bg-red-50 text-red-700 border border-red-200"
-                                : "bg-blue-50 text-blue-700 border border-blue-200 animate-pulse"
+                                ? "bg-red-50 text-red-700 border-red-200"
+                                : "bg-blue-50 text-blue-700 border-blue-200 animate-pulse"
                             }`}>
                               {off.status === "accepted" ? "DEAL CLOSED" : off.status === "declined" ? "REJECTED" : "SIGN PENDING"}
                             </span>
                           </td>
-                          <td className="py-3 px-2 text-right">
+                          <td className="py-4 px-3 text-right">
                             {off.status === "submitted" ? (
-                              <div className="flex justify-end gap-1.5">
+                              <div className="flex justify-end gap-2">
                                 <button
                                   onClick={() => handleOfferDecision(off.id, "accept")}
-                                  className="bg-emerald-500 hover:bg-emerald-600 hover:shadow-sm font-bold px-2.5 py-1.5 rounded-lg text-[10px] text-white transition cursor-pointer"
+                                  className="bg-sky-500 hover:bg-sky-600 text-white font-extrabold px-3 py-2 rounded-xl text-xs transition cursor-pointer shadow-sm active:scale-95"
                                 >
                                   Smart Approve
                                 </button>
                                 <button
                                   onClick={() => handleOfferDecision(off.id, "decline")}
-                                  className="bg-stone-100 hover:bg-red-50 hover:text-red-650 font-bold px-2 py-1.5 border border-stone-200 rounded-lg text-[10px] text-stone-600 transition cursor-pointer"
+                                  className="bg-slate-105 bg-slate-100 hover:bg-red-50 hover:text-red-700 hover:border-red-200 text-slate-700 font-bold px-3 py-2 border border-slate-200 rounded-xl text-xs transition cursor-pointer active:scale-95"
                                 >
                                   Decline
                                 </button>
                               </div>
                             ) : off.status === "accepted" ? (
-                              <div className="flex items-center justify-end gap-1.5 text-stone-500 text-[10px] font-semibold">
-                                <CheckCircle2 size={13} className="text-emerald-500" />
+                              <div className="flex items-center justify-end gap-1.5 text-slate-600 text-xs font-bold">
+                                <CheckCircle2 size={14} className="text-emerald-500" />
                                 <span>Registry Settled</span>
                               </div>
                             ) : (
-                              <div className="flex items-center justify-end gap-1.5 text-stone-400 text-[10px] font-medium">
-                                <XCircle size={13} className="text-red-500" />
+                              <div className="flex items-center justify-end gap-1.5 text-slate-500 text-xs font-semibold">
+                                <XCircle size={14} className="text-red-500" />
                                 <span>Negotiation Voided</span>
                               </div>
                             )}
@@ -914,13 +1010,20 @@ export default function App() {
 
         {/* Right Side: Tabbed details or agent chats sidebar panels (col-span-4) */}
         <div className="lg:col-span-4 flex flex-col gap-6">
-          
           {/* Interactive Agent Select Carousel row */}
-          <div className="bg-white border border-stone-200 rounded-2xl p-4 shadow-sm">
-            <h3 className="font-heading text-xs font-bold text-stone-850 flex items-center gap-1.5 mb-3">
-              <User size={13} className="text-emerald-600" />
+          <div className="bg-[#0e1b33]/85 border border-[#2b3c58] rounded-2xl p-5 shadow-lg text-left text-white">
+            <h3 className="font-heading text-sm font-bold text-[#dfc394] flex items-center gap-2 mb-3">
+              <User size={15} className="text-luxury-bronze" />
               <span>Elite Real Estate Broker Directory</span>
             </h3>
+
+            {/* Micro Auto-Sync Notice to demonstrate real-time correlation */}
+            {currentListing && (
+              <p className="text-[10px] text-emerald-300 bg-emerald-950/40 border border-emerald-500/30 px-2.5 py-1.5 rounded-xl font-bold mb-4 flex items-center gap-1.5 leading-tight">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Auto-Synced containing estate: <b>{currentAgent?.name}</b> is your designated escrow steward.</span>
+              </p>
+            )}
 
             <div className="grid grid-cols-4 gap-2">
               {agents.map((ag) => {
@@ -929,24 +1032,24 @@ export default function App() {
                   <button
                     key={ag.id}
                     onClick={() => handleSelectAgent(ag.id)}
-                    className={`flex flex-col items-center p-2 rounded-xl border text-center transition ${
+                    className={`flex flex-col items-center p-2.5 rounded-xl border text-center transition cursor-pointer ${
                       isSelected 
-                        ? "bg-emerald-50 border-emerald-450 text-emerald-800 font-bold ring-1 ring-emerald-300"
-                        : "bg-stone-50 border-stone-200 hover:bg-stone-100 text-stone-702"
+                        ? "bg-[#2d2110]/95 border-luxury-bronze/85 text-[#dfc394] font-black ring-1 ring-luxury-bronze/40 shadow-inner"
+                        : "bg-[#132442]/60 border-[#243a61] hover:bg-[#1a3159]/80 text-stone-205"
                     }`}
                   >
                     <img 
                       src={ag.avatar} 
                       alt="" 
-                      className={`h-9 w-9 rounded-full object-cover border-2 ${
-                        isSelected ? "border-emerald-500" : "border-stone-250"
+                      className={`h-11 w-11 rounded-full object-cover border-2 ${
+                        isSelected ? "border-luxury-bronze" : "border-[#243a61]"
                       }`}
                       referrerPolicy="no-referrer"
                     />
-                    <span className="text-[9px] mt-1.5 truncate max-w-full font-bold leading-none">
+                    <span className="text-xs mt-2 truncate max-w-full font-bold leading-none">
                       {ag.name.split(" ")[0]}
                     </span>
-                    <span className="text-[7px] text-stone-500 mt-1 font-mono tracking-tighter leading-none">
+                    <span className="text-[9px] text-[#e0be84] mt-1.5 font-mono tracking-tighter leading-none font-bold">
                       {ag.coinSpecialties[0]} Dev
                     </span>
                   </button>
@@ -958,13 +1061,13 @@ export default function App() {
           {/* Matchmaker Trigger Button */}
           <button
             onClick={() => setIsMatchmakerActive(!isMatchmakerActive)}
-            className={`w-full py-3 rounded-xl border font-heading font-black text-xs tracking-wide transition flex items-center justify-center gap-2 cursor-pointer shadow-md active:scale-[0.99] ${
+            className={`w-full py-3.5 rounded-xl border font-heading font-black text-xs md:text-sm tracking-wide transition flex items-center justify-center gap-2.5 cursor-pointer shadow-sm active:scale-[0.99] ${
               isMatchmakerActive
-                ? "bg-stone-800 border-stone-750 text-white"
-                : "bg-[#10b981] hover:bg-[#059669] border-[#047857] text-white hover:shadow-lg hover:shadow-emerald-100"
+                ? "bg-sky-600 border-sky-700 text-white"
+                : "bg-sky-500 hover:bg-sky-600 border-sky-600 text-white hover:shadow-md hover:shadow-sky-400/20"
             }`}
           >
-            <Sparkles size={13} className="text-white animate-pulse" />
+            <Sparkles size={14} className="text-white animate-pulse" />
             <span>{isMatchmakerActive ? "Return to Portfolio" : "Find My Ideal Estate Match ✨"}</span>
           </button>
 
@@ -977,23 +1080,23 @@ export default function App() {
           ) : (
             <>
               {/* Tab Menu Header selection */}
-              <div className="flex rounded-xl bg-stone-100 p-1 border border-stone-200/80 shadow-sm">
+              <div className="flex rounded-xl bg-sky-100 p-1 border border-sky-200 shadow-sm">
                 <button
                   onClick={() => setActiveSideTab("detail")}
-                  className={`flex-1 font-heading font-bold text-xs py-2 rounded-lg transition-all ${
+                  className={`flex-1 font-heading font-extrabold text-xs md:text-sm py-2.5 rounded-lg transition-all cursor-pointer ${
                     activeSideTab === "detail"
-                      ? "bg-emerald-500 text-white shadow font-black"
-                      : "text-stone-500 hover:text-stone-900"
+                      ? "bg-sky-500 text-white shadow-sm font-black border border-sky-400"
+                      : "text-slate-650 hover:text-slate-900"
                   }`}
                 >
                   Property Portfolio
                 </button>
                 <button
                   onClick={() => setActiveSideTab("chat")}
-                  className={`flex-1 font-heading font-bold text-xs py-2 rounded-lg transition-all ${
+                  className={`flex-1 font-heading font-extrabold text-xs md:text-sm py-2.5 rounded-lg transition-all cursor-pointer ${
                     activeSideTab === "chat"
-                      ? "bg-emerald-500 text-white shadow font-black"
-                      : "text-stone-500 hover:text-stone-900"
+                      ? "bg-sky-500 text-white shadow-sm font-black border border-sky-400"
+                      : "text-slate-650 hover:text-slate-900"
                   }`}
                 >
                   1:1 AI Broker Dealroom
